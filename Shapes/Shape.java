@@ -2,35 +2,18 @@ package Shapes;
 
 import javax.swing.JLabel;
 import java.awt.*;
+import javax.swing.JPanel;
 
-public class Shape extends JLabel{ // i klassh Shapes.Sxhma perilamavanei to sxhma twn kartwn
-	// einai i 'mhtera' klassh opou klironomeitai apo tis upokathgories twn sxhmatwn
-	
-	String id;
-	boolean selected ;
-	Color color;
+public class Shape extends JPanel { // i klassh Shapes.Sxhma perilamavanei to sxhma twn kartwn
+    // einai i 'mhtera' klassh opou klironomeitai apo tis upokathgories twn sxhmatwn
 
-	public Shape(String id, boolean selected, Color color) {
-		super();
-		this.id = id;
-		this.selected=selected;
-		this.color = color;
-	}
+    Color color;
 
-	public String getId() {
-		return id;
-	}
+    public Shape( Color color) {
+        super();
+        this.color = color;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
+  
 
 }

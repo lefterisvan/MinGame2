@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 public class Diamond extends Shape {
 
-    public Diamond(String id, boolean selected, Color color) { // klassh gia to sxhma tou trigwnou
-        super(id, selected, color);
+    public Diamond( Color color) { // klassh gia to sxhma tou trigwnou
+        super(color);
     }
 
     public void paint(Graphics g) {

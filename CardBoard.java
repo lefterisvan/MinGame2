@@ -4,16 +4,19 @@ import Shapes.Shape;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.*;
 
 
-public class CardBoard implements ActionListener { // i klassh auth perilamvanei tin dhmiourgia tou board (tamplo) tou paixnidiou
+public class CardBoard implements MouseListener { // i klassh auth perilamvanei tin dhmiourgia tou board (tamplo) tou paixnidiou
 
 	Button buttons[] = new Button[25]; // pinakas me ta buttons/kartes tou board
-	JLabel labels[] = new JLabel[25]; // pinakas me labels opou exoume ta sxhmata
+	JPanel panels[] = new JPanel[25]; // pinakas me panels opou exoume ta sxhmata
+        JLabel labels[] = new JLabel[25];
 	JFrame frame;
 	int counter=0;
 	int score=0;
@@ -27,35 +30,35 @@ public class CardBoard implements ActionListener { // i klassh auth perilamvanei
 		ArrayList<Shape> cards = new ArrayList<>(); // i lista cards antiproswpevei ola ta sxhmata tou board mas
 
 		for (int i = 0; i < 4; i++) { // gemizoume tin lista cards me sxhmata (idio sxhma idio xrwma mexri 2 zeugaria)
-			cards.add(new Square("sqrB", false, Color.BLACK));
+			cards.add(new Square(Color.BLACK));
 		}
 
 		for (int i = 0; i < 4; i++) {
-			cards.add(new Square("sqrR", false, Color.RED));
+			cards.add(new Square(Color.RED));
 		}
 
 		for (int i = 0; i < 2; i++) {
-			cards.add(new Square("sqrG", false, Color.GREEN));
+			cards.add(new Square(Color.GREEN));
 		}
 
 		for (int i = 0; i < 4; i++) {
-			cards.add(new Diamond("diamB", false, Color.BLUE));
+			cards.add(new Diamond(Color.BLUE));
 		}
 
 		for (int i = 0; i < 2; i++) {
-			cards.add(new Triangle("triG", false, Color.GREEN));
+			cards.add(new Triangle(Color.GREEN));
 		}
 
 		for (int i = 0; i < 1; i++) {
-			cards.add(new Joker("jo", false, Color.BLACK));
+			cards.add(new Joker(Color.BLACK));
 		}
 
 		for (int i = 0; i < 4; i++) {
-			cards.add(new Circle("ovalB", false, Color.BLACK));
+			cards.add(new Circle(Color.BLACK));
 		}
 
 		for (int i = 0; i < 4; i++) {
-			cards.add(new Circle("ovalR", false, Color.RED));
+			cards.add(new Circle( Color.RED));
 		}
 
 		Collections.shuffle(cards); // anakatevoume to board (tis kartes)
@@ -64,16 +67,17 @@ public class CardBoard implements ActionListener { // i klassh auth perilamvanei
 			// to id tou button einai to id tou sxhmatos panw sto button/karta
 			// gia na ksexwrisoume thn monadikothta twn zeugariwn.
 			// ola ta zeugaria exoun tous idious kwdikous.
+                    panels[i]=cards.get(i);
 
-			Button button1 = new Button(cards.get(i).getId(), cards.get(i) );
 
-			JLabel label = (cards.get(i));
-			frame.add(button1);
-			buttons[i] = button1;
-			labels[i] = label;
-			labels[i].setVisible(false);
-			frame.add(labels[i]);
-			button1.addActionListener(this);
+			
+			
+                       buttons[i]=new Button(cards.get(i));
+			
+			panels[i].setVisible(false);
+                        frame.add(buttons[i]);
+			frame.add(panels[i]);
+			buttons[i].addMouseListener(this);
 		}
 
 		frame.setTitle("Game");
@@ -85,18 +89,20 @@ public class CardBoard implements ActionListener { // i klassh auth perilamvanei
 		frame.setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) { // sth methodo auth dinoume leitourgikothta sta buttons/kartes
 
-		for(int i=0; i<buttons.length; i++)
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("klik");
+     
+        for(int i=0; i<buttons.length; i++)
 		{
 			Button b=buttons[i];
 			if(e.getSource()==b)
 			{
-				if (b.getId().equalsIgnoreCase("jo") || score==12) {
+				if (b.getSxhma() instanceof Joker || score==12) {
 					for (int j=0; j<buttons.length; j++) {
 						buttons[j].setVisible(false);
-						labels[j].setVisible(true);
+						panels[j].setVisible(true);
 					}
 					JOptionPane.showMessageDialog(null, "Game ended! You Won!", "information", JOptionPane.INFORMATION_MESSAGE);
 					FileOutputStream f = null;
@@ -129,11 +135,11 @@ public class CardBoard implements ActionListener { // i klassh auth perilamvanei
 					previousCard=i;
 				}
 				buttons[i].setVisible(false);
-				labels[i].setVisible(true);
+				panels[i].setVisible(true);
 				counter++;
 
 				if (counter==2) { // sta 2 anoigmata kartwn, sugkrinoume ta ids twn buttons na doume ean einai zeugari
-					if (buttons[i].getId().equalsIgnoreCase(buttons[previousCard].getId())) { // ean nai tote den kanoume tipota kai ta afinoume anoikta
+					if (buttons[i].getSxhma().equals((buttons[previousCard].getSxhma()))) { // ean nai tote den kanoume tipota kai ta afinoume anoikta
 						counter=0;
 						previousCard=100;
 						score++;
@@ -141,9 +147,9 @@ public class CardBoard implements ActionListener { // i klassh auth perilamvanei
 					else { // ean oxi, tote kleinoume tis kartes pou anoiksame
 						//tries++;
 						buttons[i].setVisible(true);
-						labels[i].setVisible(false);
+						panels[i].setVisible(false);
 						buttons[previousCard].setVisible(true);
-						labels[previousCard].setVisible(false);
+						panels[previousCard].setVisible(false);
 						counter=0;
 						previousCard=100;
 					}
@@ -178,7 +184,27 @@ public class CardBoard implements ActionListener { // i klassh auth perilamvanei
 				frame.dispose();
 			}
 		}
-	}
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println("pressed");
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("released");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("lets start");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        System.out.println("exited");
+    }
 
 
 }

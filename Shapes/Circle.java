@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle extends Shape {
-	public Circle(String id, boolean selected, Color color) { // klassh gia to sxhma tou kuklou
-		super(id, selected, color);
+	public Circle( Color color) { // klassh gia to sxhma tou kuklou
+		super( color);
 	}
 
 	public void paint(Graphics g) {

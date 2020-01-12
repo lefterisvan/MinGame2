@@ -6,8 +6,8 @@ import java.awt.Graphics;
 
 public class Joker extends Circle {
 
-	public Joker(String id, boolean selected, Color color) { // klassh gia to sxhma tou Shapes.Joker
-		super(id, selected, color);
+	public Joker( Color color) { // klassh gia to sxhma tou Shapes.Joker
+		super(color);
 		
 	}
 	public void paint(Graphics g) {

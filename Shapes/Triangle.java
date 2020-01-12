@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 public class Triangle extends Shape {
 	
-	public Triangle(String id, boolean selected, Color color) { // klassh gia to sxhma tou trigwnou
-		super(id, selected, color);
+	public Triangle(Color color) { // klassh gia to sxhma tou trigwnou
+		super(color);
 	}
 
 	public void paint(Graphics g) {
