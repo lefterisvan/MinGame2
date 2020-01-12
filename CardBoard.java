@@ -107,7 +107,7 @@ public class CardBoard implements MouseListener { // i klassh auth perilamvanei 
 					JOptionPane.showMessageDialog(null, "Game ended! You Won!", "information", JOptionPane.INFORMATION_MESSAGE);
 					FileOutputStream f = null;
 					ObjectOutputStream o = null;
-					User user = new User("koto",12);
+					User user = new User(Menu.name,12);
 					try {
 						if (!file.exists()) {
 							f = new FileOutputStream(file);
@@ -145,7 +145,7 @@ public class CardBoard implements MouseListener { // i klassh auth perilamvanei 
 						score++;
 					}
 					else { // ean oxi, tote kleinoume tis kartes pou anoiksame
-						//tries++;
+						tries++;
 						buttons[i].setVisible(true);
 						panels[i].setVisible(false);
 						buttons[previousCard].setVisible(true);
@@ -160,7 +160,7 @@ public class CardBoard implements MouseListener { // i klassh auth perilamvanei 
 				JOptionPane.showMessageDialog(null, "Game ended! 5 wrong predictions for pair!", "information", JOptionPane.INFORMATION_MESSAGE);
 				FileOutputStream f = null;
 				ObjectOutputStream o = null;
-				User user = new User("koto",score);
+				User user = new User(Menu.name,score);
 				try {
 					if (!file.exists()) {
 						f = new FileOutputStream(file);
