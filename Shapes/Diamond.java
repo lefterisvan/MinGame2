@@ -3,7 +3,7 @@ package Shapes;
 import java.awt.*;
 import java.awt.Graphics;
 
-public class Diamond extends Shape {
+public class Diamond extends Shape { // klassh gia to sxhma tou romvou
 
     public Diamond(String id, boolean selected, Color color) { // klassh gia to sxhma tou trigwnou
         super(id, selected, color);
@@ -14,7 +14,7 @@ public class Diamond extends Shape {
 
         int [] x = { 25, 40, 25, 10 };
         int [] y = { 5, 20, 35, 20 };
-        g.drawPolygon( x, y, 4 );
+        g.fillPolygon( x, y, 4 );
 
     }
 

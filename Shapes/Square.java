@@ -12,7 +12,7 @@ public class Square extends Shape { // klassh gia to sxhma tou tetragwnou
 
 	public void paint(Graphics g) {
 		g.setColor(color);
-		g.drawRect(15,15,15,15);
+		g.fillRect(15,15,15,15);
 	}
 
 }
