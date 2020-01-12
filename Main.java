@@ -9,7 +9,5 @@ public class Main {
 
 
 		Menu menu = new Menu();
-		/*Template t1 = new Template();
-		t1.graphicEasy(new JFrame("Titlos"), new GridLayout(5,5));*/
 	}
 }

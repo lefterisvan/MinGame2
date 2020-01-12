@@ -12,6 +12,7 @@ public class Button extends JButton { // i klassh Button anaferetai stis kartes 
 
 	public Button(Shape sxhma) {
 		super();
+                this.sxhma=sxhma;
 		
 	}
 

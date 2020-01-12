@@ -9,6 +9,9 @@ public class Shape extends JPanel { // i klassh Shapes.Sxhma perilamavanei to sx
 
     Color color;
 
+    public Shape() {
+    }
+
     public Shape( Color color) {
         super();
         this.color = color;
