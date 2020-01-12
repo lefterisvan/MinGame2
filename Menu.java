@@ -63,8 +63,23 @@ public class Menu {
                 // tou petagetai to parathuro gia na valei to onoma.
 
                 if (name.length()!=0) {
-                    CardBoard t1 = new CardBoard();
-                    t1.graphicEasy(new JFrame("Titlos"), new GridLayout(5,5));
+                    String[] options = {"8x8", "5x5", "10x10"};
+                    String select = (String)JOptionPane.showInputDialog(new JFrame(), "Please choose a level",
+                                "Select difficulty", JOptionPane.QUESTION_MESSAGE,null, options, options[2]);
+                    CardBoard board = new CardBoard();
+
+                    if(select.equals("5x5"))
+                    {
+                        board.graphicEasy(new JFrame("Titlos"), new GridLayout(5,5));
+                    }
+                    else if(select.equals("8x8"))
+                    {
+                        board.graphicEasy(new JFrame("Titlos"), new GridLayout(8,8));
+                    }
+                    else if(select.equals("10x10"))
+                    {
+                        board.graphicEasy(new JFrame("Titlos"),new GridLayout(10,10));
+                    }
                 }
                 else {
                     btn3.doClick(); // antistoixei sto parathuro pou ekxwreis to onoma
